@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<head>
+<title>Random Tools</title>
+<script type = "text/javascript" src="js\sweetalert2.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/sweetalert.css">
+</head>
+<html>
+  <body onload="javascript:getRandomPort();">
+
+<!-- Header -->
+  <div class="header">
+    <h1>Random Tools<img src="images/snek.png" style="float:center;width:100px;height:100px;"></h1>
+  </div>
+
+<!-- Top Navigation -->
+  <div class="topnav">
+    <a href="rhp.html" title="Generate a list of random ephemeral ports">Random Port Generator</a>
+    <a href="range.html" title="Generate a random number">Random Number Range</a>
+    <a href="index.html" title="parse">Parser</a>
+    <a href="index.html">More Tools</a>
+  </div>
+
+  <!-- Form Code; Put button back inside if to re-use-->
+  <!-- <form class="form-inline" onSubmit="return false;"> -->
+    <!-- Number of Ports, weird spacing will happen -->
+    <!-- <label for="numports">Number of Ports to Generate</label> -->
+    <!-- <input type="text" id="numports" name="numports" autofocus> -->
+  <!-- </form> -->
+
+  <div class="table-users">
+    <!-- <div class="header">Ephemeral Port Generator</div> -->
+    <table cellspacing="0">
+              <tr>
+                <th></th>
+                <th>Operating Systems</th>
+                <th>Random Ports</th>
+                <th>Selection Strategy</th>
+                <th>Port Range</th>
+              </tr>
+         
+              <tr>
+                <td><img src="images\operating-system-logo\4734\operating-system-logo\png-64\linux-64x64-567162-dark.png" alt="" /></td>
+                <td>Linux</td>
+                <td id="linux"></td>
+                <td>local, random</td>
+                <td>32768 - 61000</td>
+              </tr>
+         
+              <tr>
+                <td><img class="icon" src="images\operating-system-logo\4734\operating-system-logo\png-64\windows-64x64-202436-dark.png" alt="Windows NT 5.x" title="Windows NT 5.x"/></td>
+                <td>Windows NT 5.x</td>
+                <td id="windows5"></td>
+                <td>global, sequential</td>
+                <td>1025 - 5000</td>
+              </tr>
+              <tr>
+                <td><img class="icon" src="images\operating-system-logo\4734\operating-system-logo\png-64\windows-64x64-6-dark.png" alt="Windows NT 6.0+" title="Windows NT 6.0+" /></td>
+                <td>Windows NT 6.0+</td>
+                <td id="windows6"></td>
+                <td>N/A</td>
+                <td>49152 - 65535</td>
+              </tr>
+         
+              <tr>
+                <td><img class="icon" src="images\operating-system-logo\4734\operating-system-logo\png-64\freebsd-64x64-202379-darkcirc.png" title="FreeBSD" /></td>
+                <td>FreeBSD</td>
+                <td id="freebsd"></td>
+                <td>global, random</td>
+                <td>10000 - 65535</td>
+              </tr>
+               
+              <tr>
+                <td><img class="icon" src="images\operating-system-logo\4734\operating-system-logo\png-64\solaris-64x64-2024110-dark.png" title="Solaris" /></td>
+                <td>Solaris</td>
+                <td id="solaris"></td>
+                <td>N/A</td>
+                <td>32768 - 65535</td>
+              </tr>
+              <tr>
+                <td><img class="icon" src="images\operating-system-logo\4734\operating-system-logo\png-64\solaris-64x64-2024110-dark.png" alt="Solaris" /></td>
+                <td>Solaris</td>
+                <td id="solaris"></td>
+                <td>N/A</td>
+                <td>32768 - 65535</td>
+               </tr>
+              <tr>
+                <td><img class="icon" src="images\operating-system-logo\4734\operating-system-logo\png-64\solaris-64x64-2024110-dark.png" alt="Solaris" /></td>
+                <td>Solaris</td>
+                <td id="solaris"></td>
+                <td>N/A</td>
+                <td>32768 - 65535</td>
+              </tr>
+    </table>
+    </div>
+    <div>
+      <button value="submit" class="button-center" id="submit" onclick="getRandomPort()" autofocus>Re-Generate</button>
+    </div>
+ </div>
+  <script>
+    const dict = {};
+    dict["windows5"] = [1025,5000]
+    dict["windows6"] = [49152,65535]
+    dict["linux"] = [32768,61000]
+    dict["solaris"] = [32768,65535]
+    dict["freebsd"] = [10000,65535]
+
+    function getRandomPort(numports) {
+        // Ability to add number of ports. The table will resize, may cause issues
+        // var numports = document.getElementById('numports').value
+        // if (numports >= 25) {
+        //     swal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',    
+        //         text: "Choose less ports...Max is 25"
+
+        //     })
+        // } 
+        // else {
+            numports = 5;
+            for (const value of Object.entries(dict)) {
+                min = Math.ceil(value[1][0]);
+                max = Math.floor(value[1][1]);
+                key = value[0] 
+                const ports = [];
+                for (i=0; i<numports; i++) {
+                    result = Math.floor(Math.random() * (max - min + 1) + min);
+                    ports.push(result);
+                }
+              document.getElementById(key).innerHTML = ports
+            }      
+    }
+    // }
+    </script> 
+  </body>
+</html>

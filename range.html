@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+<title>Random Tools</title>
+<script type = "text/javascript" src="js\sweetalert2.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/sweetalert2.css">
+
+<!-- <link rel="stylesheet" href="css/sweetalert.css"> -->
+</head>
+<html>
+<!-- Header -->
+  <div class="header">
+    <h1>Random Tools<img src="images/snek.png" style="float:center;width:100px;height:100px;"></h1>
+  </div>
+
+<!-- Top Navigation -->
+  <div class="topnav">
+    <a href="rhp.html">Random Port Generator</a>
+    <a href="range.html">Random Number Range</a>
+    <a href="index.html">More Tools</a>
+  </div>
+
+<div class="card">
+        <form class="form-inline">
+            <!-- <div> -->
+            <label for="begin">Starting Number:</label>
+            <input type="text" id="begin" name="begin" autofocus>
+            <label for="end">Ending Number:</label>
+            <input type="text" id="end" name="end">
+            <button type="button" class="center" onclick="getRandomNumber()">Generate</button>
+            <!-- </div> -->
+        </form>
+    <p>Number:</p>
+
+    <p id="output"></p>
+    </div>
+
+        <script>
+            function getRandomNumber(begin,end) {
+                var begin = document.getElementById('begin').value;
+                var end = document.getElementById('end').value;
+                min = Math.ceil(begin);
+                max = Math.floor(end);
+                if (min >= max) {
+                    swal.fire({
+                        // icon: 'error',
+                        imageUrl: 'images/snek_stp.png',
+                        imageWidth: 200,
+                        background: 'darkgray',
+                        confirmButtonColor: '#c0482f',
+                        title: "Starting number must be smaller than ending number!"
+                    })
+                } else 
+                    result = Math.floor(Math.random() * (max - min + 1) + min);            
+                    document.getElementById("output").innerHTML = result
+            
+            }
+        </script>
+
+    
+
+    </body>
+</html>
